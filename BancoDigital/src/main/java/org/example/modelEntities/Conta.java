@@ -49,24 +49,13 @@ public abstract class Conta {
         this.cliente = cliente;
     }
 
-    public void depositoConta(double amount) {
-        this.saldo += amount;
-
-    }
+    public abstract void depositoConta(double amount);
 
 
-    public Double saqueConta(double amount) throws Exception {
-        if(amount < 0){
-            throw new Exception("O valor do saque é menor que zero");
-        }
-        return this.saldo -= amount;
-    }
+    public abstract Double saqueConta(double amount) throws Exception;
 
 
-    public void transferenciaConta(double amount, Conta contaDestino) {
-        if(amount <= saldo && contaDestino.getAgencia() == this.getAgencia()){
-            this.saldo -= amount;
-            contaDestino.setSaldo(contaDestino.getSaldo() + amount);
-        }
-    }
+
+    public abstract void transferenciaConta(double amount, Conta contaDestino);
+
 }

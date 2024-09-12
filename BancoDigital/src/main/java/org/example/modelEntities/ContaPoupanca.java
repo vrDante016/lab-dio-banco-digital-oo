@@ -1,11 +1,10 @@
 package org.example.modelEntities;
 
-public class ContaCorrente extends Conta{
+public class ContaPoupanca extends Conta{
 
-    public ContaCorrente(Cliente cliente, int agencia, int numero, Double saldo){
+    public ContaPoupanca(Cliente cliente, int agencia, int numero, Double saldo){
         super(cliente, agencia, numero, saldo);
     }
-
     @Override
     public void depositoConta(double amount) {
         this.setSaldo(getSaldo() + amount);
@@ -22,10 +21,11 @@ public class ContaCorrente extends Conta{
 
     @Override
     public void transferenciaConta(double amount, Conta contaDestino) {
-        if(getSaldo() < amount && contaDestino.getAgencia() == getAgencia()){
+        if(getSaldo() >= amount && contaDestino.getAgencia() == getAgencia()){
             setSaldo(getSaldo() - amount);
-            contaDestino.setSaldo(getSaldo() + amount);
+            contaDestino.setSaldo((getSaldo() + amount) - 0.5);
         }
     }
+
 
 }
